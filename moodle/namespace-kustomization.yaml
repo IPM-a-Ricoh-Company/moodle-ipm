@@ -1,0 +1,13 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: namespaces
+  namespace: tanzu-continuousdelivery-resources
+spec:
+  interval: 1m0s
+  path: ./namespaces
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: moodle-ipm
+    namespace: tanzu-continuousdelivery-resources
