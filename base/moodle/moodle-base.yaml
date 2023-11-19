@@ -89,7 +89,6 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/instance: moodlev0
       app.kubernetes.io/name: moodle
   strategy:
     type: RollingUpdate
