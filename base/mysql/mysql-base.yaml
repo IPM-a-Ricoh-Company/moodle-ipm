@@ -105,7 +105,6 @@ spec:
       targetPort: mysql
       nodePort: null
   selector:
-    app.kubernetes.io/instance: moodlev0
     app.kubernetes.io/name: mysql
     app.kubernetes.io/component: primary
 ---
@@ -123,7 +122,6 @@ spec:
   podManagementPolicy: ""
   selector:
     matchLabels:
-      app.kubernetes.io/instance: moodlev0
       app.kubernetes.io/name: mysql
       app.kubernetes.io/component: primary
   serviceName: moodlev0-mysql
@@ -148,7 +146,6 @@ spec:
             - podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    app.kubernetes.io/instance: moodlev0
                     app.kubernetes.io/name: mysql
                 topologyKey: kubernetes.io/hostname
               weight: 1
@@ -249,7 +246,6 @@ spec:
     - metadata:
         name: data
         labels:
-          app.kubernetes.io/instance: moodlev0
           app.kubernetes.io/name: mysql
           app.kubernetes.io/component: primary
       spec:
