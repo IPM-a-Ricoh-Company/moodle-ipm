@@ -1,0 +1,218 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: moodlev0-mysql
+  namespace: "moodle"
+  labels:
+    app.kubernetes.io/name: mysql
+    app.kubernetes.io/version: 8.0.35
+type: Opaque
+data:
+  mysql-root-password: "WXU2SFhaZUdpdQ=="
+  mysql-password: "SVBNaXBtMTAhCg=="
+---
+# Source: moodle/charts/redis/templates/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: moodlev0-redis
+  namespace: "moodle"
+  labels:
+    app.kubernetes.io/instance: moodlev0
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/version: 7.2.2
+    helm.sh/chart: redis-18.2.0
+type: Opaque
+data:
+  redis-password: "SVBNaXBtMTAhCg=="
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: moodlev0-moodle
+  namespace: "moodle"
+  labels:
+    app.kubernetes.io/name: moodle
+    app.kubernetes.io/version: 4.3.0
+type: Opaque
+data:
+  moodle-password: "SVBNaXBtMTAhCg=="
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: moodlev0-moodle-moodle
+  namespace: "moodle"
+  labels:
+    app.kubernetes.io/name: moodle
+    app.kubernetes.io/version: 4.3.0
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "1Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: moodlev0-moodle
+  namespace: "moodle"
+  labels:
+    app.kubernetes.io/name: moodle
+    app.kubernetes.io/version: 4.3.0
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: "Cluster"
+  sessionAffinity: None
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+    - name: https
+      port: 443
+      targetPort: https
+  selector:
+    app.kubernetes.io/instance: moodlev0
+    app.kubernetes.io/name: moodle
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moodlev0-moodle
+  namespace: "moodle"
+  labels:
+    app.kubernetes.io/name: moodle
+    app.kubernetes.io/version: 4.3.0
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: moodlev0
+      app.kubernetes.io/name: moodle
+  strategy:
+    type: RollingUpdate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: moodle
+        app.kubernetes.io/version: 4.3.0
+      annotations:
+    spec:
+      
+      securityContext:
+        fsGroup: 1001
+        seccompProfile:
+          type: RuntimeDefault
+      affinity:
+        podAffinity:
+          
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: moodlev0
+                    app.kubernetes.io/name: moodle
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+          
+      priorityClassName: ""
+      hostAliases:
+        - ip: "127.0.0.1"
+          hostnames:
+            - "status.localhost"
+      initContainers:
+      containers:
+        - name: moodlev0-moodle
+          image: docker.io/bitnami/moodle:4.3.0-debian-11-r0
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            runAsNonRoot: true
+            runAsUser: 1001
+          env:
+            - name: BITNAMI_DEBUG
+              value: "false"
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
+            - name: APACHE_HTTP_PORT_NUMBER
+              value: "8080"
+            - name: APACHE_HTTPS_PORT_NUMBER
+              value: "8443"
+            - name: MOODLE_DATABASE_TYPE 
+              value: "mysqli"
+            - name: MOODLE_DATABASE_HOST #modificar
+              value: "10.96.157.205"
+            - name: MOODLE_DATABASE_PORT_NUMBER
+              value: "3306"
+            - name: MOODLE_DATABASE_NAME
+              value: "bitnami_moodle"
+            - name: MOODLE_DATABASE_USER
+              value: "bn_moodle"
+            - name: MOODLE_DATABASE_PASSWORD #modificar
+              valueFrom:
+                secretKeyRef:
+                  name: moodlev0-mysql
+                  key: mysql-password
+            - name: MOODLE_SKIP_BOOTSTRAP
+              value: "no"
+            - name: MOODLE_USERNAME
+              value: "user"
+            - name: MOODLE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: moodlev0-moodle
+                  key: moodle-password
+            - name: MOODLE_SITE_NAME
+              value: Moodle de Universidad de Valladolid
+            - name: MOODLE_LANG
+              value: es            
+            - name: MOODLE_EMAIL
+              value: "user@example.com" #modificar
+          envFrom:
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: https
+              containerPort: 8443
+          livenessProbe:
+            httpGet:
+              path: /login/index.php
+              port: http
+            initialDelaySeconds: 600
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            httpGet:
+              path: /login/index.php
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 6
+          resources:
+            limits: {}
+            requests:
+              cpu: 300m
+              memory: 512Mi
+          volumeMounts:
+            - name: moodle-data
+              mountPath: /bitnami/moodle
+              subPath: moodle
+            - name: moodle-data
+              mountPath: /bitnami/moodledata
+              subPath: moodledata
+      volumes:
+        - name: moodle-data
+          persistentVolumeClaim:
+            claimName: moodlev0-moodle-moodle

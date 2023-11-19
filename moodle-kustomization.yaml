@@ -1,0 +1,19 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: moodle-base
+  namespace: tanzu-continuousdelivery-resources
+spec:
+  dependsOn:
+    - name: namespaces
+    - name: mysql-base
+    - name: redis-base 
+  interval: 1m0s
+  path: ./base/moodle
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: moodle-ipm
+    namespace: tanzu-continuousdelivery-resources
+#patches:
+#- path: ./overlays/deploy-patch.yaml
