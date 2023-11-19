@@ -253,7 +253,6 @@ spec:
       port: 6379
       targetPort: redis
   selector:
-    app.kubernetes.io/instance: moodlev0
     app.kubernetes.io/name: redis
 ---
 apiVersion: v1
@@ -275,7 +274,6 @@ spec:
       targetPort: redis
       nodePort: null
   selector:
-    app.kubernetes.io/instance: moodlev0
     app.kubernetes.io/name: redis
     app.kubernetes.io/component: master
 ---
@@ -298,7 +296,6 @@ spec:
       targetPort: redis
       nodePort: null
   selector:
-    app.kubernetes.io/instance: moodlev0
     app.kubernetes.io/name: redis
     app.kubernetes.io/component: replica
 ---
@@ -315,7 +312,6 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance: moodlev0
       app.kubernetes.io/name: redis
       app.kubernetes.io/component: master
   serviceName: moodlev0-redis-headless
@@ -346,7 +342,6 @@ spec:
             - podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    app.kubernetes.io/instance: moodlev0
                     app.kubernetes.io/name: redis
                     app.kubernetes.io/component: master
                 topologyKey: kubernetes.io/hostname
@@ -477,7 +472,6 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app.kubernetes.io/instance: moodlev0
       app.kubernetes.io/name: redis
       app.kubernetes.io/component: replica
   serviceName: moodlev0-redis-headless
@@ -508,7 +502,6 @@ spec:
             - podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    app.kubernetes.io/instance: moodlev0
                     app.kubernetes.io/name: redis
                     app.kubernetes.io/component: replica
                 topologyKey: kubernetes.io/hostname
