@@ -147,15 +147,15 @@ spec:
               value: "8443"
             - name: MOODLE_DATABASE_TYPE 
               value: "mysqli"
-            - name: MOODLE_DATABASE_HOST #modificar
-              value: "10.96.21.179"
+            - name: MOODLE_DATABASE_HOST
+              value: "moodlev0-mysql.moodle-mysql.svc.cluster.local"
             - name: MOODLE_DATABASE_PORT_NUMBER
               value: "3306"
             - name: MOODLE_DATABASE_NAME
               value: "bitnami_moodle"
             - name: MOODLE_DATABASE_USER
               value: "bn_moodle"
-            - name: MOODLE_DATABASE_PASSWORD #modificar
+            - name: MOODLE_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: moodlev0-mysql
