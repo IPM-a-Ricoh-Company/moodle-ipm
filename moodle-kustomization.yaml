@@ -5,9 +5,9 @@ metadata:
   namespace: tanzu-continuousdelivery-resources
 spec:
   dependsOn:
-    - name: namespaces
-    - name: mysql-base
-    - name: redis-base 
+    - name: moodle-namespaces
+    - name: moodle-mysql
+    - name: moodle-redis 
   interval: 1m0s
   path: ./base/moodle
   prune: true
