@@ -8,18 +8,18 @@ Se compone de las siguientes partes:
 - Base de datos de cache REDIS replicada versión 6.2
 
 ## Componentes principales de cada elemento
-###Moodle
+### Moodle
 - Acceso por servicio balanceado de capa4 (IP)
 - Almacenamiento persistente en vSAN File Services
 - Despliegue en alta disponibilidad (3 pods) en nodepool propio
 
-###BBDD MySQL
+### BBDD MySQL
 - Base de datos replicada
 - Accceso mediante servicio balanceado capa4 (IP)
 - Almacenamiento persistente en vSAN File Services
 - Replicación mediante nodo primario y nodo secundario
 
-###REDIS
+### REDIS
 - Base de datos replicada
 - Accceso mediante servicio balanceado capa4 (IP)
 - Almacenamiento persistente en vSAN File Services
