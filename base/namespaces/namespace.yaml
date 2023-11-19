@@ -2,3 +2,13 @@ kind: Namespace
 apiVersion: v1
 metadata:
     name: moodle
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+    name: moodle-redis
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+    name: moodle-mysql
