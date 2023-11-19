@@ -148,7 +148,7 @@ spec:
             - name: MOODLE_DATABASE_TYPE 
               value: "mysqli"
             - name: MOODLE_DATABASE_HOST #modificar
-              value: "10.96.157.205"
+              value: "moodlev0-mysql.moodle-mysql.svc.cluster.local"
             - name: MOODLE_DATABASE_PORT_NUMBER
               value: "3306"
             - name: MOODLE_DATABASE_NAME
