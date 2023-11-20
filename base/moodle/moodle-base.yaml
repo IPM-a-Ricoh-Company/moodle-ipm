@@ -9,7 +9,6 @@ metadata:
     app.kubernetes.io/version: 8.0.35
 type: Opaque
 data:
-  mysql-root-password: "WXU2SFhaZUdpdQ=="
   mysql-password: "SVBNaXBtMTAhCg=="
 ---
 # Source: moodle/charts/redis/templates/secret.yaml
