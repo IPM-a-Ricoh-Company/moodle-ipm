@@ -108,6 +108,7 @@ metadata:
     app.kubernetes.io/component: primary
 spec:
   type: ClusterIP
+  clusterIP: 10.96.140.13
   sessionAffinity: None
   ports:
     - name: mysql
