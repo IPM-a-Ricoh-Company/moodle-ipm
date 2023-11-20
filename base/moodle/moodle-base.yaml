@@ -158,6 +158,8 @@ spec:
               value: "no"
             - name: MOODLE_USERNAME
               value: "user"
+            - name: MOODLE_PASSWORD
+              value: "password"
             - name: MOODLE_SITE_NAME
               value: Moodle de Universidad de Valladolid
             - name: MOODLE_LANG
