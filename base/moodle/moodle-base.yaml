@@ -152,7 +152,7 @@ spec:
             - name: MOODLE_DATABASE_PORT_NUMBER
               value: "3306"
             - name: MOODLE_DATABASE_NAME
-              value: "bitnami_moodle"
+              value: "my_database"
             - name: MOODLE_DATABASE_USER
               value: "admin"
             - name: MOODLE_DATABASE_PASSWORD
