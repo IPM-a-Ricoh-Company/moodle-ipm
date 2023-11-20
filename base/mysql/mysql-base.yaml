@@ -21,8 +21,19 @@ metadata:
     app.kubernetes.io/version: 8.0.35
 type: Opaque
 data:
-  mysql-root-password: "WXU2SFhaZUdpdQ=="
   mysql-password: "SVBNaXBtMTAhCg=="
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: moodlev0-mysql-root
+  namespace: "moodle-mysql"
+  labels:
+    app.kubernetes.io/name: mysql
+    app.kubernetes.io/version: 8.0.35
+type: Opaque
+data:
+  mysql-root-password: "WXU2SFhaZUdpdQ=="
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -175,12 +186,12 @@ spec:
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: mysql-password
-                  value: "moodlev0-mysql" 
+                  name: moodlev0-mysql
+                  key: mysql-password 
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: moodlev0-mysql
+                  name: moodlev0-mysql-root
                   key: mysql-root-password
             - name: MYSQL_DATABASE
               value: "bitnami_moodle"
