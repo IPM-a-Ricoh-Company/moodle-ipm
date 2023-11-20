@@ -195,7 +195,7 @@ spec:
                   name: moodlev0-mysql-root
                   key: mysql-root-password
             - name: MYSQL_DATABASE
-              value: "bitnami_moodle"
+              value: "my_database"
           envFrom:
           ports:
             - name: mysql
