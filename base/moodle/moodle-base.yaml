@@ -154,7 +154,7 @@ spec:
             - name: MOODLE_DATABASE_NAME
               value: "bitnami_moodle"
             - name: MOODLE_DATABASE_USER
-              value: "bn_moodle"
+              value: "admin"
             - name: MOODLE_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
