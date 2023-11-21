@@ -15,5 +15,3 @@ spec:
     kind: GitRepository
     name: moodle-ipm
     namespace: tanzu-continuousdelivery-resources
-#patches:
-#- path: ./overlays/deploy-patch.yaml
