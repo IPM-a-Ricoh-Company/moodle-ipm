@@ -75,6 +75,7 @@ kind: Ingress
 metadata:
   name: moodle-ingress
   namespace: "moodle"
+spec:
   rules:
   - host: moodle-uva.k8s.sc.ipm
     http:
