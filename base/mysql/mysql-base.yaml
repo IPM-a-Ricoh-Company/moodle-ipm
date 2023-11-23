@@ -168,7 +168,7 @@ spec:
       initContainers:
       containers:
         - name: mysql
-          image: docker.io/bitnami/mysql:8.0.35-debian-11-r0
+          image: harbor-supervisor.k8s.sc.ipm/moodle/mysql:8.0.35
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
