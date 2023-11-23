@@ -73,7 +73,8 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: moodle
-    spec:  
+    spec:
+      terminationGracePeriodSeconds: 600
       securityContext:
         fsGroup: 1001
         seccompProfile:
