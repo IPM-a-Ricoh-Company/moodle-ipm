@@ -173,18 +173,9 @@ spec:
               cpu: 300m
               memory: 512Mi
           volumeMounts:
-          - name: system
-            mountPath: /bitnami/moodle
           - name: data
             mountPath: /bitnami/moodledata
   volumeClaimTemplates:
-  - metadata:
-      name: system
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
   - metadata:
       name: data    
     spec:
