@@ -174,7 +174,7 @@ spec:
           volumeMounts:
           - name: system
             mountPath: /bitnami/moodle
-          - name: rwx-volume
+          - name: data
             mountPath: /bitnami/moodledata
   volumeClaimTemplates:
   - metadata:
