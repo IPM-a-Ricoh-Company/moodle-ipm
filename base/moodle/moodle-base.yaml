@@ -129,7 +129,7 @@ spec:
       initContainers:
       containers:
         - name: moodle
-          image: harbor-supervisor.k8s.sc.ipm/moodle/moodle:4.3
+          image: harbor.cpd.uva.es/moodle/moodle:4.3
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
