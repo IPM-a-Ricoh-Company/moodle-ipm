@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: release-name-mariadb
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -19,7 +19,7 @@ kind: ServiceAccount
 automountServiceAccountToken: true
 metadata:
   name: release-name-redis
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -32,7 +32,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: release-name-mariadb
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -49,7 +49,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: release-name-redis
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -65,7 +65,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: release-name-moodle
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -81,7 +81,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: release-name-mariadb
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -125,7 +125,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: release-name-redis-configuration
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -158,7 +158,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: release-name-redis-health
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -266,7 +266,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: release-name-redis-scripts
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -296,7 +296,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: release-name-moodle-moodle
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -315,7 +315,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: release-name-mariadb
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -343,7 +343,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: release-name-redis-headless
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -368,7 +368,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: release-name-redis-master
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -395,7 +395,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: release-name-moodle
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -422,7 +422,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: release-name-moodle
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -564,7 +564,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: release-name-mariadb
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
@@ -712,7 +712,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: release-name-redis-master
-  namespace: "moodle"
+  namespace: "moodle2"
   labels:
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/managed-by: Helm
