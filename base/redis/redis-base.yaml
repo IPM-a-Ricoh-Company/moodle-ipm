@@ -352,7 +352,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: redis
-          image: harbor.cpd.uva.es/moodle/redis:7.2.2
+          image: harbor-supervisor.k8s.sc.ipm/moodle/redis:7.2.2
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
@@ -512,7 +512,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: redis
-          image: harbor.cpd.uva.es/moodle/redis:7.2.2
+          image: harbor-supervisor.k8s.sc.ipm/moodle/redis:7.2.2
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
