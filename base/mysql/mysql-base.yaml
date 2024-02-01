@@ -168,7 +168,7 @@ spec:
       initContainers:
       containers:
         - name: mysql
-          image: harbor.cpd.uva.es/moodle/mysql:8.0.35
+          image: harbor-supervisor.k8s.sc.ipm/moodle/mysql:8.0.35
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
