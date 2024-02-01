@@ -34,19 +34,19 @@ type: Opaque
 data:
   moodle-password: "SVBNaXBtMTAhCg=="
 ---
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: system
-  namespace: "moodle"
-  labels:
-    app.kubernetes.io/name: moodle
-spec:
-  accessModes:
-    - "ReadWriteOnce"
-  resources:
-    requests:
-      storage: "1Gi"
+#kind: PersistentVolumeClaim
+#apiVersion: v1
+#metadata:
+#  name: system
+#  namespace: "moodle"
+#  labels:
+#    app.kubernetes.io/name: moodle
+#spec:
+#  accessModes:
+#    - "ReadWriteOnce"
+#  resources:
+#    requests:
+#      storage: "1Gi"
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -210,8 +210,11 @@ spec:
               mountPath: /bitnami/moodledata
       volumes:
         - name: system
-          persistentVolumeClaim:
-            claimName: system
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+          #persistentVolumeClaim:
+            #claimName: system
         - name: data
           persistentVolumeClaim:
             claimName: data
