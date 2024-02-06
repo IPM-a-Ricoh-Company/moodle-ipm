@@ -130,7 +130,7 @@ spec:
       containers:
         - name: moodle
           image: harbor-supervisor.k8s.sc.ipm/moodle/moodle:4.3
-          imagePullPolicy: "IfNotPresent"
+          imagePullPolicy: "Always"
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
